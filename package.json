@@ -14,8 +14,8 @@
     "deploy": "prisma deploy",
     "generate": "prisma generate",
     "prisma": "prisma deploy && prisma generate",
-    "build": "babel src -d build",
-    "postbuild": "cd src && copy ./api/**/*.graphql ../build/api/",
+    "one": "babel src -d build",
+    "two": "cd src && cp -R -n ./api/ ../build/api/",
     "start": "node build/server.js"
   },
   "dependencies": {
