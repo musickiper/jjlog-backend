@@ -4,7 +4,37 @@ type User {
   email: String!
   firstName: String
   lastName: String
+  profileImg: Image
+  bio: String
   loginSecret: String
-  createdAt: String
-  updatedAt: String
+  createdAt: String!
+  updatedAt: String!
+  posts: [Post!]!
+  comments: [Comment!]!
+}
+
+type Image {
+  id: ID!
+  url: String!
+  post: Post!
+}
+
+type Comment {
+  id: ID!
+  contents: String!
+  createdAt: String!
+  updatedAt: String!
+  user: User!
+  post: Post!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  contents: String!
+  createdAt: String!
+  updatedAt: String!
+  user: User!
+  images: [Image!]!
+  comments: [Comment!]!
 }
