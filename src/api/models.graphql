@@ -4,6 +4,7 @@ type User {
   email: String!
   firstName: String
   lastName: String
+  avatar: String
   profileImg: Image
   bio: String
   loginSecret: String

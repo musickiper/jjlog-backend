@@ -2,6 +2,7 @@ type User {
   id: ID! @id
   username: String! @unique
   email: String! @unique
+  avatar: String @default(value:"#")
   firstName: String @default(value: "")
   lastName: String
   profileImg: Image
