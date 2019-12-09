@@ -27,20 +27,21 @@ var _default = {
             switch (_context.prev = _context.next) {
               case 0:
                 email = args.email, secret = args.secret;
-                _context.next = 3;
+                _context.prev = 1;
+                _context.next = 4;
                 return _prismaClient.prisma.user({
                   email: email
                 });
 
-              case 3:
+              case 4:
                 user = _context.sent;
 
                 if (!(user.loginSecret === secret)) {
-                  _context.next = 10;
+                  _context.next = 11;
                   break;
                 }
 
-                _context.next = 7;
+                _context.next = 8;
                 return _prismaClient.prisma.updateUser({
                   data: {
                     loginSecret: null
@@ -50,18 +51,27 @@ var _default = {
                   }
                 });
 
-              case 7:
+              case 8:
                 return _context.abrupt("return", (0, _utils.generateToken)(user.id));
 
-              case 10:
+              case 11:
                 throw Error("Wrong email/secret conversion");
 
-              case 11:
+              case 12:
+                _context.next = 17;
+                break;
+
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](1);
+                throw Error(_context.t0);
+
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[1, 14]]);
       }));
 
       function confirmSecret(_x, _x2) {

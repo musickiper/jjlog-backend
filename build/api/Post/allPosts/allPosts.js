@@ -4,10 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
+
+var _prismaClient = require("../../../../generated/prisma-client");
+
 var _default = {
   Query: {
-    test: function test() {
-      return "Hello";
+    allPosts: function allPosts() {
+      return _prismaClient.prisma.posts({});
     }
   }
 };

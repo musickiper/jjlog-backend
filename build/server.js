@@ -12,6 +12,8 @@ var _schema = _interopRequireDefault(require("./schema"));
 
 var _passport = require("./passport");
 
+var _middlewares = require("./middlewares");
+
 // Import modules
 // Hide credentials using 'dotenv' module
 // Auto generate schemas and resolvers of GraphQLServer from 'api' directory
@@ -21,7 +23,8 @@ var server = new _graphqlYoga.GraphQLServer({
   context: function context(_ref) {
     var request = _ref.request;
     return {
-      request: request
+      request: request,
+      isAuthenticated: _middlewares.isAuthenticated
     };
   }
 }); // Record logs using 'morgan'

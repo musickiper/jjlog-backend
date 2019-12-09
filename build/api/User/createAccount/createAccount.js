@@ -26,7 +26,8 @@ var _default = {
             switch (_context.prev = _context.next) {
               case 0:
                 username = args.username, email = args.email, _args$firstName = args.firstName, firstName = _args$firstName === void 0 ? "" : _args$firstName, _args$lastName = args.lastName, lastName = _args$lastName === void 0 ? "" : _args$lastName;
-                _context.next = 3;
+                _context.prev = 1;
+                _context.next = 4;
                 return _prismaClient.prisma.$exists.user({
                   OR: [{
                     username: username
@@ -35,18 +36,18 @@ var _default = {
                   }]
                 });
 
-              case 3:
+              case 4:
                 exists = _context.sent;
 
                 if (!exists) {
-                  _context.next = 6;
+                  _context.next = 9;
                   break;
                 }
 
-                throw Error("This username / email is already taken");
+                throw Error("The username or email is already taken");
 
-              case 6:
-                _context.next = 8;
+              case 9:
+                _context.next = 11;
                 return _prismaClient.prisma.createUser({
                   username: username,
                   email: email,
@@ -54,15 +55,25 @@ var _default = {
                   lastName: lastName
                 });
 
-              case 8:
+              case 11:
                 return _context.abrupt("return", true);
 
-              case 9:
+              case 12:
+                _context.next = 18;
+                break;
+
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+                return _context.abrupt("return", false);
+
+              case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[1, 14]]);
       }));
 
       function createAccount(_x, _x2) {

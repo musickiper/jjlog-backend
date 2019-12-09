@@ -8,18 +8,24 @@ exports["default"] = void 0;
 var _prismaClient = require("../../../generated/prisma-client");
 
 var _default = {
-  User: {
-    posts: function posts(_ref) {
+  Post: {
+    user: function user(_ref) {
       var id = _ref.id;
-      return _prismaClient.prisma.user({
+      return _prismaClient.prisma.post({
         id: id
-      }).posts();
+      }).user();
     },
     comments: function comments(_ref2) {
       var id = _ref2.id;
-      return _prismaClient.prisma.user({
+      return _prismaClient.prisma.post({
         id: id
       }).comments();
+    },
+    images: function images(_ref3) {
+      var id = _ref3.id;
+      return _prismaClient.prisma.post({
+        id: id
+      }).images();
     }
   }
 };

@@ -5,7 +5,6 @@ type User {
   avatar: String @default(value:"#")
   firstName: String @default(value: "")
   lastName: String
-  profileImg: Image
   bio: String
   loginSecret: String
   createdAt: DateTime! @createdAt
