@@ -225,8 +225,8 @@ export type PostOrderByInput =
   | "title_DESC"
   | "contents_ASC"
   | "contents_DESC"
-  | "sumarry_ASC"
-  | "sumarry_DESC"
+  | "summary_ASC"
+  | "summary_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -315,20 +315,20 @@ export interface PostWhereInput {
   contents_not_starts_with?: Maybe<String>;
   contents_ends_with?: Maybe<String>;
   contents_not_ends_with?: Maybe<String>;
-  sumarry?: Maybe<String>;
-  sumarry_not?: Maybe<String>;
-  sumarry_in?: Maybe<String[] | String>;
-  sumarry_not_in?: Maybe<String[] | String>;
-  sumarry_lt?: Maybe<String>;
-  sumarry_lte?: Maybe<String>;
-  sumarry_gt?: Maybe<String>;
-  sumarry_gte?: Maybe<String>;
-  sumarry_contains?: Maybe<String>;
-  sumarry_not_contains?: Maybe<String>;
-  sumarry_starts_with?: Maybe<String>;
-  sumarry_not_starts_with?: Maybe<String>;
-  sumarry_ends_with?: Maybe<String>;
-  sumarry_not_ends_with?: Maybe<String>;
+  summary?: Maybe<String>;
+  summary_not?: Maybe<String>;
+  summary_in?: Maybe<String[] | String>;
+  summary_not_in?: Maybe<String[] | String>;
+  summary_lt?: Maybe<String>;
+  summary_lte?: Maybe<String>;
+  summary_gt?: Maybe<String>;
+  summary_gte?: Maybe<String>;
+  summary_contains?: Maybe<String>;
+  summary_not_contains?: Maybe<String>;
+  summary_starts_with?: Maybe<String>;
+  summary_not_starts_with?: Maybe<String>;
+  summary_ends_with?: Maybe<String>;
+  summary_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -631,7 +631,7 @@ export interface PostCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
   title: String;
   contents: String;
-  sumarry: String;
+  summary: String;
   images?: Maybe<ImageCreateManyWithoutPostInput>;
   comments?: Maybe<CommentCreateManyWithoutPostInput>;
 }
@@ -668,7 +668,7 @@ export interface PostCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
   title: String;
   contents: String;
-  sumarry: String;
+  summary: String;
   user: UserCreateOneWithoutPostsInput;
   images?: Maybe<ImageCreateManyWithoutPostInput>;
 }
@@ -755,7 +755,7 @@ export interface PostUpdateWithWhereUniqueWithoutUserInput {
 export interface PostUpdateWithoutUserDataInput {
   title?: Maybe<String>;
   contents?: Maybe<String>;
-  sumarry?: Maybe<String>;
+  summary?: Maybe<String>;
   images?: Maybe<ImageUpdateManyWithoutPostInput>;
   comments?: Maybe<CommentUpdateManyWithoutPostInput>;
 }
@@ -985,20 +985,20 @@ export interface PostScalarWhereInput {
   contents_not_starts_with?: Maybe<String>;
   contents_ends_with?: Maybe<String>;
   contents_not_ends_with?: Maybe<String>;
-  sumarry?: Maybe<String>;
-  sumarry_not?: Maybe<String>;
-  sumarry_in?: Maybe<String[] | String>;
-  sumarry_not_in?: Maybe<String[] | String>;
-  sumarry_lt?: Maybe<String>;
-  sumarry_lte?: Maybe<String>;
-  sumarry_gt?: Maybe<String>;
-  sumarry_gte?: Maybe<String>;
-  sumarry_contains?: Maybe<String>;
-  sumarry_not_contains?: Maybe<String>;
-  sumarry_starts_with?: Maybe<String>;
-  sumarry_not_starts_with?: Maybe<String>;
-  sumarry_ends_with?: Maybe<String>;
-  sumarry_not_ends_with?: Maybe<String>;
+  summary?: Maybe<String>;
+  summary_not?: Maybe<String>;
+  summary_in?: Maybe<String[] | String>;
+  summary_not_in?: Maybe<String[] | String>;
+  summary_lt?: Maybe<String>;
+  summary_lte?: Maybe<String>;
+  summary_gt?: Maybe<String>;
+  summary_gte?: Maybe<String>;
+  summary_contains?: Maybe<String>;
+  summary_not_contains?: Maybe<String>;
+  summary_starts_with?: Maybe<String>;
+  summary_not_starts_with?: Maybe<String>;
+  summary_ends_with?: Maybe<String>;
+  summary_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1028,7 +1028,7 @@ export interface PostUpdateManyWithWhereNestedInput {
 export interface PostUpdateManyDataInput {
   title?: Maybe<String>;
   contents?: Maybe<String>;
-  sumarry?: Maybe<String>;
+  summary?: Maybe<String>;
 }
 
 export interface UserUpsertWithoutCommentsInput {
@@ -1046,7 +1046,7 @@ export interface PostUpdateOneRequiredWithoutCommentsInput {
 export interface PostUpdateWithoutCommentsDataInput {
   title?: Maybe<String>;
   contents?: Maybe<String>;
-  sumarry?: Maybe<String>;
+  summary?: Maybe<String>;
   user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
   images?: Maybe<ImageUpdateManyWithoutPostInput>;
 }
@@ -1137,7 +1137,7 @@ export interface PostCreateWithoutImagesInput {
   id?: Maybe<ID_Input>;
   title: String;
   contents: String;
-  sumarry: String;
+  summary: String;
   user: UserCreateOneWithoutPostsInput;
   comments?: Maybe<CommentCreateManyWithoutPostInput>;
 }
@@ -1157,7 +1157,7 @@ export interface PostUpdateOneRequiredWithoutImagesInput {
 export interface PostUpdateWithoutImagesDataInput {
   title?: Maybe<String>;
   contents?: Maybe<String>;
-  sumarry?: Maybe<String>;
+  summary?: Maybe<String>;
   user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
   comments?: Maybe<CommentUpdateManyWithoutPostInput>;
 }
@@ -1175,7 +1175,7 @@ export interface PostCreateInput {
   id?: Maybe<ID_Input>;
   title: String;
   contents: String;
-  sumarry: String;
+  summary: String;
   user: UserCreateOneWithoutPostsInput;
   images?: Maybe<ImageCreateManyWithoutPostInput>;
   comments?: Maybe<CommentCreateManyWithoutPostInput>;
@@ -1184,7 +1184,7 @@ export interface PostCreateInput {
 export interface PostUpdateInput {
   title?: Maybe<String>;
   contents?: Maybe<String>;
-  sumarry?: Maybe<String>;
+  summary?: Maybe<String>;
   user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
   images?: Maybe<ImageUpdateManyWithoutPostInput>;
   comments?: Maybe<CommentUpdateManyWithoutPostInput>;
@@ -1193,7 +1193,7 @@ export interface PostUpdateInput {
 export interface PostUpdateManyMutationInput {
   title?: Maybe<String>;
   contents?: Maybe<String>;
-  sumarry?: Maybe<String>;
+  summary?: Maybe<String>;
 }
 
 export interface UserCreateInput {
@@ -1431,7 +1431,7 @@ export interface Post {
   id: ID_Output;
   title: String;
   contents: String;
-  sumarry: String;
+  summary: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1440,7 +1440,7 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   contents: () => Promise<String>;
-  sumarry: () => Promise<String>;
+  summary: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   user: <T = UserPromise>() => T;
@@ -1470,7 +1470,7 @@ export interface PostSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   contents: () => Promise<AsyncIterator<String>>;
-  sumarry: () => Promise<AsyncIterator<String>>;
+  summary: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   user: <T = UserSubscription>() => T;
@@ -1500,7 +1500,7 @@ export interface PostNullablePromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   contents: () => Promise<String>;
-  sumarry: () => Promise<String>;
+  summary: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   user: <T = UserPromise>() => T;
@@ -1929,7 +1929,7 @@ export interface PostPreviousValues {
   id: ID_Output;
   title: String;
   contents: String;
-  sumarry: String;
+  summary: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1940,7 +1940,7 @@ export interface PostPreviousValuesPromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   contents: () => Promise<String>;
-  sumarry: () => Promise<String>;
+  summary: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -1951,7 +1951,7 @@ export interface PostPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   contents: () => Promise<AsyncIterator<String>>;
-  sumarry: () => Promise<AsyncIterator<String>>;
+  summary: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
