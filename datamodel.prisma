@@ -32,6 +32,7 @@ type Post {
     id: ID! @id
     title: String!
     contents: String!
+    sumarry: String!
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
     user: User! @relation(name: "UserPostRel")

@@ -7,7 +7,11 @@ export default {
 
       return prisma.posts({
         where: {
-          OR: [{ title_contains: term }, { contents_contains: term }]
+          OR: [
+            { title_contains: term },
+            { contents_contains: term },
+            { summary_contains: term }
+          ]
         }
       });
     }

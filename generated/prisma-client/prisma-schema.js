@@ -522,6 +522,7 @@ type Post {
   id: ID!
   title: String!
   contents: String!
+  sumarry: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
@@ -539,6 +540,7 @@ input PostCreateInput {
   id: ID
   title: String!
   contents: String!
+  sumarry: String!
   user: UserCreateOneWithoutPostsInput!
   images: ImageCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
@@ -563,6 +565,7 @@ input PostCreateWithoutCommentsInput {
   id: ID
   title: String!
   contents: String!
+  sumarry: String!
   user: UserCreateOneWithoutPostsInput!
   images: ImageCreateManyWithoutPostInput
 }
@@ -571,6 +574,7 @@ input PostCreateWithoutImagesInput {
   id: ID
   title: String!
   contents: String!
+  sumarry: String!
   user: UserCreateOneWithoutPostsInput!
   comments: CommentCreateManyWithoutPostInput
 }
@@ -579,6 +583,7 @@ input PostCreateWithoutUserInput {
   id: ID
   title: String!
   contents: String!
+  sumarry: String!
   images: ImageCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
 }
@@ -595,6 +600,8 @@ enum PostOrderByInput {
   title_DESC
   contents_ASC
   contents_DESC
+  sumarry_ASC
+  sumarry_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -605,6 +612,7 @@ type PostPreviousValues {
   id: ID!
   title: String!
   contents: String!
+  sumarry: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -652,6 +660,20 @@ input PostScalarWhereInput {
   contents_not_starts_with: String
   contents_ends_with: String
   contents_not_ends_with: String
+  sumarry: String
+  sumarry_not: String
+  sumarry_in: [String!]
+  sumarry_not_in: [String!]
+  sumarry_lt: String
+  sumarry_lte: String
+  sumarry_gt: String
+  sumarry_gte: String
+  sumarry_contains: String
+  sumarry_not_contains: String
+  sumarry_starts_with: String
+  sumarry_not_starts_with: String
+  sumarry_ends_with: String
+  sumarry_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -694,6 +716,7 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   title: String
   contents: String
+  sumarry: String
   user: UserUpdateOneRequiredWithoutPostsInput
   images: ImageUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
@@ -702,11 +725,13 @@ input PostUpdateInput {
 input PostUpdateManyDataInput {
   title: String
   contents: String
+  sumarry: String
 }
 
 input PostUpdateManyMutationInput {
   title: String
   contents: String
+  sumarry: String
 }
 
 input PostUpdateManyWithoutUserInput {
@@ -743,6 +768,7 @@ input PostUpdateOneRequiredWithoutImagesInput {
 input PostUpdateWithoutCommentsDataInput {
   title: String
   contents: String
+  sumarry: String
   user: UserUpdateOneRequiredWithoutPostsInput
   images: ImageUpdateManyWithoutPostInput
 }
@@ -750,6 +776,7 @@ input PostUpdateWithoutCommentsDataInput {
 input PostUpdateWithoutImagesDataInput {
   title: String
   contents: String
+  sumarry: String
   user: UserUpdateOneRequiredWithoutPostsInput
   comments: CommentUpdateManyWithoutPostInput
 }
@@ -757,6 +784,7 @@ input PostUpdateWithoutImagesDataInput {
 input PostUpdateWithoutUserDataInput {
   title: String
   contents: String
+  sumarry: String
   images: ImageUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
 }
@@ -825,6 +853,20 @@ input PostWhereInput {
   contents_not_starts_with: String
   contents_ends_with: String
   contents_not_ends_with: String
+  sumarry: String
+  sumarry_not: String
+  sumarry_in: [String!]
+  sumarry_not_in: [String!]
+  sumarry_lt: String
+  sumarry_lte: String
+  sumarry_gt: String
+  sumarry_gte: String
+  sumarry_contains: String
+  sumarry_not_contains: String
+  sumarry_starts_with: String
+  sumarry_not_starts_with: String
+  sumarry_ends_with: String
+  sumarry_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
