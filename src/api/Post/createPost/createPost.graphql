@@ -4,5 +4,6 @@ type Mutation {
     contents: String!
     summary: String!
     images: [String!]!
+    categories: [String!]!
   ): Post!
 }

@@ -39,3 +39,9 @@ type Post {
   images: [Image!]!
   comments: [Comment!]!
 }
+
+type Category {
+  id: ID!
+  title: String!
+  posts: [Post!]!
+}

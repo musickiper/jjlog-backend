@@ -38,4 +38,11 @@ type Post {
     user: User! @relation(name: "UserPostRel")
     images: [Image!]! @relation(name: "ImagePostRel", onDelete: CASCADE)
     comments: [Comment!]! @relation(name: "CommentPostRel", onDelete: CASCADE)
+    categories: [Category!]! @relation(name: "PostCategoryRel")
+}
+
+type Category {
+    id: ID! @id
+    title: String! @unique
+    posts: [Post!]! @relation(name: "PostCategoryRel")
 }

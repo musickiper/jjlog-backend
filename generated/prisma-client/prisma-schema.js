@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateComment {
+/* GraphQL */ `type AggregateCategory {
+  count: Int!
+}
+
+type AggregateComment {
   count: Int!
 }
 
@@ -21,6 +25,190 @@ type AggregateUser {
 
 type BatchPayload {
   count: Long!
+}
+
+type Category {
+  id: ID!
+  title: String!
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  title: String!
+  posts: PostCreateManyWithoutCategoriesInput
+}
+
+input CategoryCreateManyWithoutPostsInput {
+  create: [CategoryCreateWithoutPostsInput!]
+  connect: [CategoryWhereUniqueInput!]
+}
+
+input CategoryCreateWithoutPostsInput {
+  id: ID
+  title: String!
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  title: String!
+}
+
+input CategoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [CategoryScalarWhereInput!]
+  OR: [CategoryScalarWhereInput!]
+  NOT: [CategoryScalarWhereInput!]
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateInput {
+  title: String
+  posts: PostUpdateManyWithoutCategoriesInput
+}
+
+input CategoryUpdateManyDataInput {
+  title: String
+}
+
+input CategoryUpdateManyMutationInput {
+  title: String
+}
+
+input CategoryUpdateManyWithoutPostsInput {
+  create: [CategoryCreateWithoutPostsInput!]
+  delete: [CategoryWhereUniqueInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutPostsInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutPostsInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+}
+
+input CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput!
+  data: CategoryUpdateManyDataInput!
+}
+
+input CategoryUpdateWithoutPostsDataInput {
+  title: String
+}
+
+input CategoryUpdateWithWhereUniqueWithoutPostsInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateWithoutPostsDataInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutPostsInput {
+  where: CategoryWhereUniqueInput!
+  update: CategoryUpdateWithoutPostsDataInput!
+  create: CategoryCreateWithoutPostsInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+  title: String
 }
 
 type Comment {
@@ -475,6 +663,12 @@ input ImageWhereUniqueInput {
 scalar Long
 
 type Mutation {
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
   createComment(data: CommentCreateInput!): Comment!
   updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
   updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
@@ -528,6 +722,7 @@ type Post {
   user: User!
   images(where: ImageWhereInput, orderBy: ImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Image!]
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
 }
 
 type PostConnection {
@@ -544,6 +739,12 @@ input PostCreateInput {
   user: UserCreateOneWithoutPostsInput!
   images: ImageCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
+  categories: CategoryCreateManyWithoutPostsInput
+}
+
+input PostCreateManyWithoutCategoriesInput {
+  create: [PostCreateWithoutCategoriesInput!]
+  connect: [PostWhereUniqueInput!]
 }
 
 input PostCreateManyWithoutUserInput {
@@ -561,6 +762,16 @@ input PostCreateOneWithoutImagesInput {
   connect: PostWhereUniqueInput
 }
 
+input PostCreateWithoutCategoriesInput {
+  id: ID
+  title: String!
+  contents: String!
+  summary: String!
+  user: UserCreateOneWithoutPostsInput!
+  images: ImageCreateManyWithoutPostInput
+  comments: CommentCreateManyWithoutPostInput
+}
+
 input PostCreateWithoutCommentsInput {
   id: ID
   title: String!
@@ -568,6 +779,7 @@ input PostCreateWithoutCommentsInput {
   summary: String!
   user: UserCreateOneWithoutPostsInput!
   images: ImageCreateManyWithoutPostInput
+  categories: CategoryCreateManyWithoutPostsInput
 }
 
 input PostCreateWithoutImagesInput {
@@ -577,6 +789,7 @@ input PostCreateWithoutImagesInput {
   summary: String!
   user: UserCreateOneWithoutPostsInput!
   comments: CommentCreateManyWithoutPostInput
+  categories: CategoryCreateManyWithoutPostsInput
 }
 
 input PostCreateWithoutUserInput {
@@ -586,6 +799,7 @@ input PostCreateWithoutUserInput {
   summary: String!
   images: ImageCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
+  categories: CategoryCreateManyWithoutPostsInput
 }
 
 type PostEdge {
@@ -720,6 +934,7 @@ input PostUpdateInput {
   user: UserUpdateOneRequiredWithoutPostsInput
   images: ImageUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
+  categories: CategoryUpdateManyWithoutPostsInput
 }
 
 input PostUpdateManyDataInput {
@@ -732,6 +947,18 @@ input PostUpdateManyMutationInput {
   title: String
   contents: String
   summary: String
+}
+
+input PostUpdateManyWithoutCategoriesInput {
+  create: [PostCreateWithoutCategoriesInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutCategoriesInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutCategoriesInput!]
+  deleteMany: [PostScalarWhereInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
 }
 
 input PostUpdateManyWithoutUserInput {
@@ -765,12 +992,22 @@ input PostUpdateOneRequiredWithoutImagesInput {
   connect: PostWhereUniqueInput
 }
 
+input PostUpdateWithoutCategoriesDataInput {
+  title: String
+  contents: String
+  summary: String
+  user: UserUpdateOneRequiredWithoutPostsInput
+  images: ImageUpdateManyWithoutPostInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
 input PostUpdateWithoutCommentsDataInput {
   title: String
   contents: String
   summary: String
   user: UserUpdateOneRequiredWithoutPostsInput
   images: ImageUpdateManyWithoutPostInput
+  categories: CategoryUpdateManyWithoutPostsInput
 }
 
 input PostUpdateWithoutImagesDataInput {
@@ -779,6 +1016,7 @@ input PostUpdateWithoutImagesDataInput {
   summary: String
   user: UserUpdateOneRequiredWithoutPostsInput
   comments: CommentUpdateManyWithoutPostInput
+  categories: CategoryUpdateManyWithoutPostsInput
 }
 
 input PostUpdateWithoutUserDataInput {
@@ -787,6 +1025,12 @@ input PostUpdateWithoutUserDataInput {
   summary: String
   images: ImageUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
+  categories: CategoryUpdateManyWithoutPostsInput
+}
+
+input PostUpdateWithWhereUniqueWithoutCategoriesInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutCategoriesDataInput!
 }
 
 input PostUpdateWithWhereUniqueWithoutUserInput {
@@ -802,6 +1046,12 @@ input PostUpsertWithoutCommentsInput {
 input PostUpsertWithoutImagesInput {
   update: PostUpdateWithoutImagesDataInput!
   create: PostCreateWithoutImagesInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutCategoriesInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutCategoriesDataInput!
+  create: PostCreateWithoutCategoriesInput!
 }
 
 input PostUpsertWithWhereUniqueWithoutUserInput {
@@ -890,6 +1140,9 @@ input PostWhereInput {
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
@@ -900,6 +1153,9 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
   comment(where: CommentWhereUniqueInput!): Comment
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
@@ -916,6 +1172,7 @@ type Query {
 }
 
 type Subscription {
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   image(where: ImageSubscriptionWhereInput): ImageSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
