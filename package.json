@@ -2,7 +2,7 @@
   "name": "jjlog-backend",
   "version": "0.0.1",
   "engines": {
-    "node": "12.13.1"
+    "node": "13.2.0"
   },
   "description": "This is back-end server of JJLOG",
   "main": "server.js",

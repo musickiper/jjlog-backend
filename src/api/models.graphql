@@ -1,47 +1,49 @@
 type User {
-  id: ID!
-  username: String!
-  email: String!
-  firstName: String
-  lastName: String
-  avatar: String
-  bio: String
-  loginSecret: String
-  createdAt: String!
-  updatedAt: String!
-  posts: [Post!]!
-  comments: [Comment!]!
+    id: ID!
+    username: String!
+    email: String!
+    firstName: String
+    lastName: String
+    avatar: String
+    bio: String
+    loginSecret: String
+    createdAt: String!
+    updatedAt: String!
+    posts: [Post!]!
+    comments: [Comment!]!
 }
 
 type Image {
-  id: ID!
-  url: String!
-  post: Post!
+    id: ID!
+    url: String!
+    post: Post!
 }
 
 type Comment {
-  id: ID!
-  contents: String!
-  createdAt: String!
-  updatedAt: String!
-  user: User!
-  post: Post!
+    id: ID!
+    contents: String!
+    createdAt: String!
+    updatedAt: String!
+    user: User!
+    post: Post!
 }
 
 type Post {
-  id: ID!
-  title: String!
-  contents: String!
-  summary: String!
-  createdAt: String!
-  updatedAt: String!
-  user: User!
-  images: [Image!]!
-  comments: [Comment!]!
+    id: ID!
+    title: String!
+    contents: String!
+    summary: String!
+    createdAt: String!
+    updatedAt: String!
+    user: User!
+    images: [Image!]!
+    comments: [Comment!]!
+    categories: [Category!]!
 }
 
 type Category {
-  id: ID!
-  title: String!
-  posts: [Post!]!
+    id: ID!
+    title: String!
+    posts: [Post!]!
+    count: Int!
 }
