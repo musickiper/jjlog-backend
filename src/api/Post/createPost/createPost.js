@@ -4,7 +4,7 @@ export default {
   Mutation: {
     createPost: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { title, contents, summary, images } = args;
+      const { title, contents, summary, images, categories } = args;
       const { user } = request;
 
       try {
@@ -27,6 +27,32 @@ export default {
               }
             }
           });
+        }
+        for (let category of categories) {
+          const exist = await prisma.$exists.category({ title: category });
+          if (exist) {
+            await prisma.updateCategory({
+              where: {
+                title: category
+              },
+              data: {
+                posts: {
+                  connect: {
+                    id: post.id
+                  }
+                }
+              }
+            });
+          } else {
+            await prisma.createCategory({
+              title: category,
+              posts: {
+                connect: {
+                  id: post.id
+                }
+              }
+            });
+          }
         }
         return post;
       } catch (error) {
