@@ -1,3 +1,9 @@
 type Mutation {
-    createPost(title: String!, contents:String!, images:[String!]!): Post!
+  createPost(
+    title: String!
+    contents: String!
+    summary: String!
+    images: [String!]!
+    categories: [String!]!
+  ): Post!
 }

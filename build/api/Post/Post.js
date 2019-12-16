@@ -26,6 +26,12 @@ var _default = {
       return _prismaClient.prisma.post({
         id: id
       }).images();
+    },
+    categories: function categories(_ref4) {
+      var id = _ref4.id;
+      return _prismaClient.prisma.post({
+        id: id
+      }).categories();
     }
   }
 };

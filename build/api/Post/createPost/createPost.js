@@ -19,7 +19,7 @@ var _default = {
       var _createPost = (0, _asyncToGenerator2["default"])(
       /*#__PURE__*/
       _regenerator["default"].mark(function _callee(_, args, _ref) {
-        var request, isAuthenticated, title, contents, images, user, post, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, image;
+        var request, isAuthenticated, title, contents, summary, images, categories, user, post, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, image, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, category, exist;
 
         return _regenerator["default"].wrap(function _callee$(_context) {
           while (1) {
@@ -27,13 +27,14 @@ var _default = {
               case 0:
                 request = _ref.request, isAuthenticated = _ref.isAuthenticated;
                 isAuthenticated(request);
-                title = args.title, contents = args.contents, images = args.images;
+                title = args.title, contents = args.contents, summary = args.summary, images = args.images, categories = args.categories;
                 user = request.user;
                 _context.prev = 4;
                 _context.next = 7;
                 return _prismaClient.prisma.createPost({
                   title: title,
                   contents: contents,
+                  summary: summary,
                   user: {
                     connect: {
                       email: user.email
@@ -106,19 +107,114 @@ var _default = {
                 return _context.finish(26);
 
               case 34:
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context.prev = 37;
+                _iterator2 = categories[Symbol.iterator]();
+
+              case 39:
+                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                  _context.next = 54;
+                  break;
+                }
+
+                category = _step2.value;
+                _context.next = 43;
+                return _prismaClient.prisma.$exists.category({
+                  title: category
+                });
+
+              case 43:
+                exist = _context.sent;
+
+                if (!exist) {
+                  _context.next = 49;
+                  break;
+                }
+
+                _context.next = 47;
+                return _prismaClient.prisma.updateCategory({
+                  where: {
+                    title: category
+                  },
+                  data: {
+                    posts: {
+                      connect: {
+                        id: post.id
+                      }
+                    }
+                  }
+                });
+
+              case 47:
+                _context.next = 51;
+                break;
+
+              case 49:
+                _context.next = 51;
+                return _prismaClient.prisma.createCategory({
+                  title: category,
+                  posts: {
+                    connect: {
+                      id: post.id
+                    }
+                  }
+                });
+
+              case 51:
+                _iteratorNormalCompletion2 = true;
+                _context.next = 39;
+                break;
+
+              case 54:
+                _context.next = 60;
+                break;
+
+              case 56:
+                _context.prev = 56;
+                _context.t1 = _context["catch"](37);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context.t1;
+
+              case 60:
+                _context.prev = 60;
+                _context.prev = 61;
+
+                if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+                  _iterator2["return"]();
+                }
+
+              case 63:
+                _context.prev = 63;
+
+                if (!_didIteratorError2) {
+                  _context.next = 66;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 66:
+                return _context.finish(63);
+
+              case 67:
+                return _context.finish(60);
+
+              case 68:
                 return _context.abrupt("return", post);
 
-              case 37:
-                _context.prev = 37;
-                _context.t1 = _context["catch"](4);
-                throw Error(_context.t1);
+              case 71:
+                _context.prev = 71;
+                _context.t2 = _context["catch"](4);
+                throw Error(_context.t2);
 
-              case 40:
+              case 74:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[4, 37], [11, 22, 26, 34], [27,, 29, 33]]);
+        }, _callee, null, [[4, 71], [11, 22, 26, 34], [27,, 29, 33], [37, 56, 60, 68], [61,, 63, 67]]);
       }));
 
       function createPost(_x, _x2, _x3) {

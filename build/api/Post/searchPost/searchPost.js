@@ -31,6 +31,8 @@ var _default = {
                       title_contains: term
                     }, {
                       contents_contains: term
+                    }, {
+                      summary_contains: term
                     }]
                   }
                 }));
